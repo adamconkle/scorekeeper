@@ -1,11 +1,18 @@
 * {
-      font-size: 20px;
+      font-size: 16px;
 }
 
 .player-form {
       margin-bottom: 10px;
-    }
+}
 
 .score {
 width: 30px;
 }
+
+
+button {
+      background-color: #1f1f1f;
+      color:black;
+}
+      
