@@ -1,9 +1,9 @@
-input {
-border: 3px solid red;
-width: 30px;
-}
+
+
+.player-form {
+      margin-bottom: 10px;
+    }
 
 #score1 {
-border: 3px solid red;
 width: 30px;
 }
