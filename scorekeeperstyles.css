@@ -1,5 +1,5 @@
 * {
-      font-size: 16px;
+      font-size: 18px;
 }
 
 .player-form {
@@ -13,6 +13,8 @@ width: 30px;
 
 button {
       background-color: #1f1f1f;
-      color:black;
+      color:white;
+      padding: 3px;
+      margin: 3px;
 }
       
