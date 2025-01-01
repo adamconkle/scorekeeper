@@ -30,6 +30,6 @@ const scoreInput = document.getElementById(scoreId);
 
 
       // Append the new player form to the body
-      document.body.appendChild(playerForm);
+      document.footer.appendChild(playerForm);
     }
 
