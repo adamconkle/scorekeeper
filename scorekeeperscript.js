@@ -22,7 +22,7 @@ const scoreInput = document.getElementById(scoreId);
       
       playerForm.innerHTML = `
         <input type="text" id="name${playerCount}" placeholder="Player ${playerCount} Name">
-        <input type="number" id="score${playerCount}" placeholder="0" disabled>
+        <input type="number" id="score${playerCount}" placeholder="0">
         <button onclick="changeScore('score${playerCount}', 1)">+</button>
         <button onclick="changeScore('score${playerCount}', -1)">-</button>
         <input type="reset" value="Reset" onclick="resetScore('score${playerCount}')">
