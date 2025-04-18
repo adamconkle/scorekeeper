@@ -52,7 +52,7 @@ button {
     background-color: dodgerblue;
     border: none;
     color: white;
-    padding: 10px 15px;
+    margin-bottom: 30px;
     border-radius: 5px;
 }
 button:hover {
