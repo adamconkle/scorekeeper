@@ -12,9 +12,9 @@ h1 {
 }
 
 header {
-  display:flex;
+  display: flex;
   justify-content: space-between;
-  align-items:center;
+  align-items: center;
   padding: 10px;
 }
 
@@ -33,21 +33,19 @@ header {
 }
 .player-form > .score {
     width: 50px;
+    cursor: ns-resize; /* show vertical drag handle */
 }
 
 button {
     background-color: dodgerblue;
     border: none;
     color: white;
-    padding-right: 15px;
-    padding-left: 15px;
-    padding-top: 10px;
-    padding-bottom: 10px;
+    padding: 10px 15px;
     border-radius: 5px;
 }
 button:hover {
   opacity: .8;
-  cursor: pointer
+  cursor: pointer;
 }
 
 footer > button {
@@ -55,7 +53,6 @@ footer > button {
   border: 2px solid dodgerblue;
   margin-top: 20px;
 }
-
 
 /* Remove arrows in Chrome, Safari, Edge, Opera */
 input[type="number"]::-webkit-outer-spin-button,
@@ -66,10 +63,9 @@ input[type="number"]::-webkit-inner-spin-button {
 /* Remove arrows in Firefox */
 input[type="number"] {
   -moz-appearance: textfield;
-}      
+}
 
-
-
+/* Light Mode */
 body.light-mode {
     background-color: white;
     color: black;
