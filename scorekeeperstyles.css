@@ -9,7 +9,7 @@ h1 {
 /* Player Form */
 .player-form > input, button {
       margin-bottom: 10px;
-    height: 50px;
+      height: 40px;
 }
 .player-form > button:hover {
       cursor: pointer;
