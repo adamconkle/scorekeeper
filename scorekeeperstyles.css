@@ -1,6 +1,8 @@
 @import url(https://fonts.googleapis.com/css?family=Inter);
 @import url(https://fonts.googleapis.com/css?family=Geist);
 
+
+
 /* General */
 * {
     font-size: 20px;
@@ -38,6 +40,14 @@ header {
     width: 50px;
     cursor: ns-resize; /* show vertical drag handle */
 }
+
+.player-form > .resetScore {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
 
 button {
     background-color: dodgerblue;
