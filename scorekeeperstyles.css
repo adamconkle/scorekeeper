@@ -1,32 +1,41 @@
 /* General */
 * {
-      font-size: 18px;
+    font-size: 18px;
+    font-family: Inter, Tahoma, sans-serif;
+}
+body {
+    background-color: #121212;
+    color: white;
 }
 h1 {
-      font-size: 32px;
+    font-size: 32px;
 }
 
 /* Player Form */
 .player-form > input, button {
-      margin-bottom: 10px;
-      height: 40px;
+    margin-bottom: 10px;
+    height: 40px;
 }
 .player-form > button:hover {
-      cursor: pointer;
+    cursor: pointer;
 }
-
 .player-form > .score {
-width: 50px;
+    width: 50px;
 }
 
 button {
-      background-color: #1a1a1a;
-      color:white;
-      padding-right: 15px;
-      padding-left: 15px;
-      padding-top: 10px;
-      padding-bottom: 10px;
-      border-radius: 5px;
+    background-color: dodgerblue;
+    border: none;
+    color: white;
+    padding-right: 15px;
+    padding-left: 15px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border-radius: 5px;
+}
+button:hover {
+  opacity: .8;
+  cursor: pointer
 }
 
 /* Remove arrows in Chrome, Safari, Edge, Opera */
