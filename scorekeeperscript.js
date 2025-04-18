@@ -13,7 +13,7 @@ function addPlayer() {
   playerForm.innerHTML = `
     <input type="text" id="name${playerCount}" placeholder="Player ${playerCount} Name">
     <input type="number" inputmode="numeric" class="score" id="score${playerCount}" placeholder="0">
-    <input class="resetScore" type="reset" value="🔄" onclick="resetScore('score${playerCount}')">
+    <button class="resetScore" onclick="resetScore('score${playerCount}')" data-tooltip="Reset score to 0">🔄</button>
   `;
 
   document.getElementById("scores").appendChild(playerForm);
