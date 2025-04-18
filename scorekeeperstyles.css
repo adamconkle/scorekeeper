@@ -38,13 +38,19 @@ button:hover {
   cursor: pointer
 }
 
+footer > button {
+  background-color: #121212;
+  border: 2px solid dodgerblue;
+  margin-top: 20px;
+}
+
+
 /* Remove arrows in Chrome, Safari, Edge, Opera */
 input[type="number"]::-webkit-outer-spin-button,
 input[type="number"]::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
-
 /* Remove arrows in Firefox */
 input[type="number"] {
   -moz-appearance: textfield;
