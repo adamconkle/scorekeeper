@@ -28,8 +28,9 @@ const scoreInput = document.getElementById(scoreId);
         <input type="reset" value="Reset" onclick="resetScore('score${playerCount}')">
       `;
 
+      // Get the target div:
+      const scoresDiv = document.getElementById("scores");
 
       // Append the new player form to the body
-      document.body.appendChild(playerForm);
+      scoresDiv.appendChild(playerForm);
     }
-
