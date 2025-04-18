@@ -1,18 +1,21 @@
 @import url(https://fonts.googleapis.com/css?family=Inter);
 @import url(https://fonts.googleapis.com/css?family=Geist);
 
-
 /* General */
 * {
-    font-size: 16px;
-    font-family: 'Inter', 'Geist',  sans-serif;
+  font-size: 18px;
+  font-family: 'Inter', 'Geist', sans-serif;
+  box-sizing: border-box;
 }
+
 body {
-    background-color: #121212;
-    color: white;
+  background-color: #121212;
+  color: white;
+  padding: 10px;
 }
+
 h1 {
-    font-size: 32px;
+  font-size: 32px;
 }
 
 header {
@@ -25,19 +28,36 @@ header {
 #lightDark {
   background-color: #121212;
   font-size: 2em;
+  border: none;
+  color: white;
+  cursor: pointer;
 }
 
 /* Player Form */
-.player-form > input, button {
-    margin-bottom: 10px;
-    height: 40px;
+.player-form {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 10px;
+  width: 100%;
+  flex-wrap: nowrap;
 }
-.player-form > button:hover {
-    cursor: pointer;
+
+.player-form > input[type="text"] {
+  flex: 1;
+  min-width: 0;
 }
-.player-form > .score {
-    width: 50px;
-    cursor: ns-resize; /* show vertical drag handle */
+
+.player-form > input[type="number"] {
+  width: 60px;
+  text-align: center;
+  -moz-appearance: textfield;
+}
+
+.player-form > input[type="number"]::-webkit-outer-spin-button,
+.player-form > input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
 }
 
 .player-form > .resetScore {
@@ -45,60 +65,52 @@ header {
   border: none;
   font-size: 1.5rem;
   cursor: pointer;
+  flex-shrink: 0;
 }
 
-
+/* Buttons */
 button {
-    background-color: dodgerblue;
-    border: none;
-    color: white;
-    margin-bottom: 30px;
-    border-radius: 5px;
+  background-color: dodgerblue;
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
 }
-button:hover {
-  opacity: .8;
+
+button:hover,
+.player-form > button:hover {
+  opacity: 0.8;
   cursor: pointer;
 }
 
+/* Footer */
 footer > button {
   background-color: #121212;
   border: 2px solid dodgerblue;
   margin-top: 20px;
 }
 
-/* Remove arrows in Chrome, Safari, Edge, Opera */
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
-/* Remove arrows in Firefox */
-input[type="number"] {
-  -moz-appearance: textfield;
-}
-
 /* Light Mode */
 body.light-mode {
-    background-color: white;
-    color: black;
+  background-color: white;
+  color: black;
 }
 
 body.light-mode button {
-    background-color: #333;
-    color: white;
+  background-color: #333;
+  color: white;
 }
 
 body.light-mode #lightDark {
-    background-color: white;
-    color: black;
+  background-color: white;
+  color: black;
 }
 
 body.light-mode footer > button {
-    background-color: white;
-    color: dodgerblue;
-    border: 2px solid dodgerblue;
+  background-color: white;
+  color: dodgerblue;
+  border: 2px solid dodgerblue;
 }
-
 
 /* Tooltip styles */
 [data-tooltip] {
@@ -127,4 +139,11 @@ body.light-mode footer > button {
 [data-tooltip]:hover::after {
   opacity: 1;
   transform: translate(-50%, -120%);
+}
+
+/* Responsive Reset Button Shrink */
+@media (max-width: 480px) {
+  .resetScore {
+    font-size: 1.2rem;
+  }
 }
