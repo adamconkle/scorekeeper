@@ -34,3 +34,11 @@ const scoreInput = document.getElementById(scoreId);
       // Append the new player form to the body
       scoresDiv.appendChild(playerForm);
     }
+
+
+document.getElementById("lightDark").addEventListener("click", function () {
+    document.body.classList.toggle("light-mode");
+
+    //change the button icon (sun/moon)
+    this.textContent = document.body.classList.contains("light-mode") ? "☽" : "☀︎";
+});
