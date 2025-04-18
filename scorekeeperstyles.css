@@ -1,19 +1,23 @@
+/* General */
 * {
       font-size: 18px;
 }
-
 h1 {
       font-size: 32px;
 }
 
-.player-form {
+/* Player Form */
+.player-form > input, button {
       margin-bottom: 10px;
+    height: 50px;
+}
+.player-form > button:hover {
+      cursor: pointer;
 }
 
-.score {
-width: 30px;
+.player-form > .score {
+width: 50px;
 }
-
 
 button {
       background-color: #1a1a1a;
@@ -24,4 +28,15 @@ button {
       padding-bottom: 10px;
       border-radius: 5px;
 }
-      
+
+/* Remove arrows in Chrome, Safari, Edge, Opera */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Remove arrows in Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}      
