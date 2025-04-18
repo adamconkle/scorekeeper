@@ -13,7 +13,7 @@ function addPlayer() {
   playerForm.innerHTML = `
     <input type="text" id="name${playerCount}" placeholder="Player ${playerCount} Name">
     <input type="number" inputmode="numeric" class="score" id="score${playerCount}" placeholder="0">
-    <input type="reset" value="Reset" onclick="resetScore('score${playerCount}')">
+    <input class="resetScore" type="reset" value="🔄" onclick="resetScore('score${playerCount}')">
   `;
 
   document.getElementById("scores").appendChild(playerForm);
@@ -82,56 +82,3 @@ function adjustScore(input, delta) {
 
 // Setup drag events on page load
 setupDragEvents();
-
-
-// local storage up to 2 hours
-// Save state to localStorage with timestamp
-function saveToLocalStorage() {
-  const players = [];
-  document.querySelectorAll(".player-form").forEach((form, index) => {
-    const name = form.querySelector(`#name${index + 1}`)?.value || "";
-    const score = form.querySelector(`#score${index + 1}`)?.value || "0";
-    players.push({ name, score });
-  });
-
-  const data = {
-    players,
-    timestamp: new Date().getTime()
-  };
-
-  localStorage.setItem("scorekeeperData", JSON.stringify(data));
-}
-
-// Load state from localStorage if not expired
-function loadFromLocalStorage() {
-  const stored = localStorage.getItem("scorekeeperData");
-  if (!stored) return;
-
-  const data = JSON.parse(stored);
-  const now = new Date().getTime();
-
-  // 2 hours = 2 * 60 * 60 * 1000 ms
-  if (now - data.timestamp > 2 * 60 * 60 * 1000) {
-    localStorage.removeItem("scorekeeperData");
-    return;
-  }
-
-  data.players.forEach((player, index) => {
-    if (index > 3) addPlayer();
-    const nameInput = document.querySelector(`#name${index + 1}`);
-    const scoreInput = document.querySelector(`#score${index + 1}`);
-    if (nameInput) nameInput.value = player.name;
-    if (scoreInput) scoreInput.value = player.score;
-  });
-}
-
-// Save after score or name changes
-document.addEventListener("input", () => {
-  saveToLocalStorage();
-});
-
-// Load saved data on page load
-window.addEventListener("DOMContentLoaded", () => {
-  loadFromLocalStorage();
-});
-
