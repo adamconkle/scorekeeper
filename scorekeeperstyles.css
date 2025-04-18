@@ -2,7 +2,6 @@
 @import url(https://fonts.googleapis.com/css?family=Geist);
 
 
-
 /* General */
 * {
     font-size: 20px;
@@ -98,4 +97,34 @@ body.light-mode footer > button {
     background-color: white;
     color: dodgerblue;
     border: 2px solid dodgerblue;
+}
+
+
+/* Tooltip styles */
+[data-tooltip] {
+  position: relative;
+  cursor: pointer;
+}
+
+[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  background: #333;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 5px;
+  font-size: 14px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, -100%);
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  top: -8px;
+  left: 50%;
+  z-index: 10;
+}
+
+[data-tooltip]:hover::after {
+  opacity: 1;
+  transform: translate(-50%, -120%);
 }
