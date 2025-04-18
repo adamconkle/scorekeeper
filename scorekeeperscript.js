@@ -1,11 +1,3 @@
-// Change score manually
-function changeScore(scoreId, increment) {
-  const scoreInput = document.getElementById(scoreId);
-  let currentScore = parseInt(scoreInput.value) || 0;
-  currentScore += increment;
-  scoreInput.value = currentScore;
-}
-
 // Reset score
 function resetScore(scoreId) {
   document.getElementById(scoreId).value = 0;
