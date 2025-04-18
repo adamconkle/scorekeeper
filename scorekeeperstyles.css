@@ -11,6 +11,18 @@ h1 {
     font-size: 32px;
 }
 
+header {
+  display:flex;
+  justify-content: space-between;
+  align-items:center;
+  padding: 10px;
+}
+
+#lightDark {
+  background-color: #121212;
+  font-size: 2em;
+}
+
 /* Player Form */
 .player-form > input, button {
     margin-bottom: 10px;
@@ -55,3 +67,26 @@ input[type="number"]::-webkit-inner-spin-button {
 input[type="number"] {
   -moz-appearance: textfield;
 }      
+
+
+
+body.light-mode {
+    background-color: white;
+    color: black;
+}
+
+body.light-mode button {
+    background-color: #333;
+    color: white;
+}
+
+body.light-mode #lightDark {
+    background-color: white;
+    color: black;
+}
+
+body.light-mode footer > button {
+    background-color: white;
+    color: dodgerblue;
+    border: 2px solid dodgerblue;
+}
