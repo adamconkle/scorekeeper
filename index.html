@@ -5,13 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Score Keeper</title>
   <link rel="stylesheet" href="scorekeeperstyles.css">
-
 </head>
 <body>
-  
+
 <header>
-    <h1>Score Keeper </h1>
-    <button type="toggle" id="lightDark">☀︎☽</button>
+  <h1>Score Keeper </h1>
+  <button type="toggle" id="lightDark">☀︎☽</button>
 </header>
 
 <div id="scores">
@@ -24,7 +23,7 @@
     <input type="reset" value="Reset" onclick="resetScore('score1')">
   </div>
 
-<!-- Player 2 -->
+  <!-- Player 2 -->
   <div class="player-form">
     <input type="text" id="name2" placeholder="Player 2 Name">
     <input type="number" inputmode="numeric" id="score2" class="score" placeholder="0">
@@ -51,14 +50,11 @@
     <input type="reset" value="Reset" onclick="resetScore('score4')">
   </div>
 </div>
-  
-</body>
 
 <footer>
-  <!-- Add Another Player Button -->
   <button class="addPlayer" onclick="addPlayer()">Add another player</button>
 </footer>
 
-  <script src="scorekeeperscript.js"></script>
-
+<script src="scorekeeperscript.js"></script>
+</body>
 </html>
