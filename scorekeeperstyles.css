@@ -1,7 +1,10 @@
+@import url(https://fonts.googleapis.com/css?family=Inter);
+@import url(https://fonts.googleapis.com/css?family=Geist);
+
 /* General */
 * {
-    font-size: 18px;
-    font-family: Inter, Tahoma, sans-serif;
+    font-size: 20px;
+    font-family: 'Inter', 'Geist',  sans-serif;
 }
 body {
     background-color: #121212;
