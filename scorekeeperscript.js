@@ -76,7 +76,7 @@ let totalDelta = 0;
 function adjustScore(input, delta) {
   totalDelta += delta;
 
-  const threshold = 40; // less sensitive
+  const threshold = 1000; // less sensitive
 
   if (Math.abs(totalDelta) >= threshold) {
     let current = parseInt(input.value) || 0;
