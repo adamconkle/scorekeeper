@@ -58,6 +58,7 @@ header {
   height: 60px;
   background-color: #ccc;
   border: none;
+  cursor: row-resize;
 }
 
 .player-form > input[type="number"]::-webkit-outer-spin-button,
@@ -138,7 +139,7 @@ body.light-mode footer > button {
   transform: translate(-50%, -100%);
   transition: opacity 0.2s ease, transform 0.2s ease;
   top: -8px;
-  left: 50%;
+  left: 0%;
   z-index: 10;
 }
 
