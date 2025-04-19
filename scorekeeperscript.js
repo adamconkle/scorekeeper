@@ -93,4 +93,33 @@ function adjustScore(input, delta) {
 setupDragEvents();
 
 
+// Add a new score column to each player
+function addScoreColumn() {
+  const allPlayers = document.querySelectorAll(".player-form");
+
+  allPlayers.forEach((playerForm, colIndex) => {
+    const scoreInputs = playerForm.querySelectorAll('input[type="number"]');
+    const newColIndex = scoreInputs.length + 1;
+
+    const scoreId = `score${colIndex + 1}_${newColIndex}`;
+    const newScoreInput = document.createElement("input");
+    newScoreInput.type = "number";
+    newScoreInput.inputMode = "numeric";
+    newScoreInput.id = scoreId;
+    newScoreInput.classList.add("score");
+    newScoreInput.placeholder = "0";
+
+    const resetBtn = document.createElement("button");
+    resetBtn.className = "resetScore";
+    resetBtn.innerHTML = "🔄";
+    resetBtn.setAttribute("data-tooltip", "Reset score to 0");
+    resetBtn.setAttribute("onclick", `resetScore('${scoreId}')`);
+
+    playerForm.appendChild(newScoreInput);
+    playerForm.appendChild(resetBtn);
+  });
+
+  setupDragEvents(); // reapply drag functionality
+}
+
 
