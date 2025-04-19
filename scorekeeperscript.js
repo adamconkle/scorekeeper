@@ -1,23 +1,48 @@
-// Reset score
-function resetScore(scoreId) {
-  document.getElementById(scoreId).value = 0;
+// Reset all scores for a given player
+function resetScore(playerIndex) {
+  const playerForm = document.querySelectorAll('.player-form')[playerIndex];
+  const scores = playerForm.querySelectorAll('input[type="number"]');
+  scores.forEach(input => input.value = 0);
 }
 
 // Add a new player form dynamically
 function addPlayer() {
-  const playerCount = document.querySelectorAll('.player-form').length + 1;
+  const playerIndex = document.querySelectorAll('.player-form').length;
 
   const playerForm = document.createElement('div');
   playerForm.classList.add('player-form');
 
   playerForm.innerHTML = `
-    <input type="text" id="name${playerCount}" placeholder="Player ${playerCount} Name">
-    <input type="number" inputmode="numeric" class="score" id="score${playerCount}" placeholder="0">
-    <button class="resetScore" onclick="resetScore('score${playerCount}')" data-tooltip="Reset score to 0">🔄</button>
+    <input type="text" id="name${playerIndex + 1}" placeholder="Player ${playerIndex + 1} Name">
+    <input type="number" inputmode="numeric" class="score" id="score${playerIndex + 1}_1" placeholder="0">
+    <button class="resetScore" onclick="resetScore(${playerIndex})" data-tooltip="Reset all scores to 0">🔄</button>
   `;
 
   document.getElementById("scores").appendChild(playerForm);
-  setupDragEvents(); // apply drag listeners to new input
+  setupDragEvents(); // Apply drag listeners to new input
+}
+
+// Add another score column for each player
+function addScoreColumn() {
+  const allPlayers = document.querySelectorAll(".player-form");
+
+  allPlayers.forEach((playerForm, playerIndex) => {
+    const existingScores = playerForm.querySelectorAll('input[type="number"]');
+    const newColIndex = existingScores.length + 1;
+    const scoreId = `score${playerIndex + 1}_${newColIndex}`;
+
+    const newScoreInput = document.createElement("input");
+    newScoreInput.type = "number";
+    newScoreInput.inputMode = "numeric";
+    newScoreInput.id = scoreId;
+    newScoreInput.classList.add("score");
+    newScoreInput.placeholder = "0";
+
+    const resetButton = playerForm.querySelector('.resetScore');
+    playerForm.insertBefore(newScoreInput, resetButton);
+  });
+
+  setupDragEvents();
 }
 
 // Light/Dark mode toggle
@@ -69,57 +94,23 @@ function setupDragEvents() {
   });
 }
 
-// function for adjusting score
-let lastY = null;
+// Score adjustment via drag
 let totalDelta = 0;
 
 function adjustScore(input, delta) {
   totalDelta += delta;
 
-  const threshold = 1000; // less sensitive
+  const threshold = 1000; // Adjust this to make it more/less sensitive
 
   if (Math.abs(totalDelta) >= threshold) {
     let current = parseInt(input.value) || 0;
     current += totalDelta > 0 ? 1 : -1;
     input.value = current;
 
-    // Reduce the accumulated delta by threshold amount
+    // Reduce accumulated delta
     totalDelta += totalDelta > 0 ? -threshold : threshold;
   }
 }
 
-
-// Setup drag events on page load
+// Initialize drag events on load
 setupDragEvents();
-
-
-// Add a new score column to each player
-function addScoreColumn() {
-  const allPlayers = document.querySelectorAll(".player-form");
-
-  allPlayers.forEach((playerForm, colIndex) => {
-    const scoreInputs = playerForm.querySelectorAll('input[type="number"]');
-    const newColIndex = scoreInputs.length + 1;
-
-    const scoreId = `score${colIndex + 1}_${newColIndex}`;
-    const newScoreInput = document.createElement("input");
-    newScoreInput.type = "number";
-    newScoreInput.inputMode = "numeric";
-    newScoreInput.id = scoreId;
-    newScoreInput.classList.add("score");
-    newScoreInput.placeholder = "0";
-
-    const resetBtn = document.createElement("button");
-    resetBtn.className = "resetScore";
-    resetBtn.innerHTML = "🔄";
-    resetBtn.setAttribute("data-tooltip", "Reset score to 0");
-    resetBtn.setAttribute("onclick", `resetScore('${scoreId}')`);
-
-    playerForm.appendChild(newScoreInput);
-    playerForm.appendChild(resetBtn);
-  });
-
-  setupDragEvents(); // reapply drag functionality
-}
-
-
