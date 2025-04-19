@@ -103,6 +103,10 @@ body.light-mode {
   color: black;
 }
 
+body.light-mode .player-form > input[type="text"] {
+  background-color: #eee;
+}
+
 body.light-mode button {
   background-color: #333;
   color: white;
