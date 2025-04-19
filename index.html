@@ -17,7 +17,11 @@
   <!-- Player 1 -->
   <div class="player-form">
     <input type="text" id="name1" placeholder="Player 1 Name">
-    <input type="number" inputmode="numeric" id="score1" class="score" placeholder="0" data-tooltip="slide up or down to adjust score">
+    <div class="score-wrapper">
+      <button class="arrow up" onclick="adjustScoreById('score1', 1)">▲</button>
+      <input type="number" inputmode="numeric" id="score1" class="score" placeholder="0" onfocus="showArrows(this)" onblur="hideArrows(this)">
+      <button class="arrow down" onclick="adjustScoreById('score1', -1)">▼</button>
+    </div>
     <button class="resetScore" onclick="resetScore('score1')" data-tooltip="Reset score to 0">🔄</button>
   </div>
 
