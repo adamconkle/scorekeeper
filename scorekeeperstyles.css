@@ -49,6 +49,7 @@ header {
   max-width: 500px;
   height: 60px;
   border: none;
+  font-size: 26px;
 }
 
 .player-form > input[type="number"] {
@@ -60,7 +61,7 @@ header {
   background-color: #ccc;
   border: none;
   cursor: row-resize;
-  font-size: 20px;
+  font-size: 26px;
 }
 
 .player-form > input[type="number"]::-webkit-outer-spin-button,
