@@ -52,13 +52,16 @@ header {
 }
 
 .player-form > input[type="number"] {
-  width: 60px;
+  min-width: 3ch; /* Smallest size for a few digits */
+  width: auto;
   text-align: center;
   -moz-appearance: textfield;
   height: 60px;
   background-color: #ccc;
   border: none;
   cursor: row-resize;
+  padding: 0 5px;
+  font-size: 20px;
 }
 
 .player-form > input[type="number"]::-webkit-outer-spin-button,
