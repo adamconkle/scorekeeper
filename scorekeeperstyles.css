@@ -53,14 +53,13 @@ header {
 
 .player-form > input[type="number"] {
   min-width: 3ch; /* Smallest size for a few digits */
-  width: auto;
+  max-width: 8ch;
   text-align: center;
   -moz-appearance: textfield;
   height: 60px;
   background-color: #ccc;
   border: none;
   cursor: row-resize;
-  padding: 0 5px;
   font-size: 20px;
 }
 
