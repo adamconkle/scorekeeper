@@ -46,6 +46,7 @@ header {
 .player-form > input[type="text"] {
   flex: 1;
   min-width: 0;
+  max-width: 500px;
   height: 60px;
 }
 
