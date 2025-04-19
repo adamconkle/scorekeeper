@@ -1,6 +1,6 @@
 // Reset all scores for a given player
-function resetScore(playerIndex) {
-  const playerForm = document.querySelectorAll('.player-form')[playerIndex];
+function resetScore(buttonElement) {
+  const playerForm = buttonElement.closest('.player-form');
   const scores = playerForm.querySelectorAll('input[type="number"]');
   scores.forEach(input => input.value = 0);
 }
@@ -15,11 +15,17 @@ function addPlayer() {
   playerForm.innerHTML = `
     <input type="text" id="name${playerIndex + 1}" placeholder="Player ${playerIndex + 1} Name">
     <input type="number" inputmode="numeric" class="score" id="score${playerIndex + 1}_1" placeholder="0">
-    <button class="resetScore" onclick="resetScore(${playerIndex})" data-tooltip="Reset all scores to 0">🔄</button>
+    <button class="resetScore" data-tooltip="Reset all scores to 0">🔄</button>
   `;
 
+  // Attach reset button event here
+  const resetButton = playerForm.querySelector('.resetScore');
+  resetButton.addEventListener('click', function () {
+    resetScore(this);
+  });
+
   document.getElementById("scores").appendChild(playerForm);
-  setupDragEvents(); // Apply drag listeners to new input
+  setupDragEvents(); // Apply drag listeners to new inputs
 }
 
 // Add another score column for each player
@@ -114,3 +120,10 @@ function adjustScore(input, delta) {
 
 // Initialize drag events on load
 setupDragEvents();
+
+// If there's an "Add Player" button at load, attach this so the first reset works
+document.querySelectorAll('.resetScore').forEach(button => {
+  button.addEventListener('click', function () {
+    resetScore(this);
+  });
+});
