@@ -93,20 +93,4 @@ function adjustScore(input, delta) {
 setupDragEvents();
 
 
-// show arrows on focus
-function showArrows(input) {
-  input.parentElement.classList.add("focused");
-}
 
-function hideArrows(input) {
-  // Delay to allow button click before hiding
-  setTimeout(() => {
-    input.parentElement.classList.remove("focused");
-  }, 200);
-}
-
-function adjustScoreById(id, delta) {
-  const input = document.getElementById(id);
-  let value = parseInt(input.value) || 0;
-  input.value = value + delta;
-}
