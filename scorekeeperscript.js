@@ -69,16 +69,25 @@ function setupDragEvents() {
   });
 }
 
+// function for adjusting score
+let lastY = null;
+let totalDelta = 0;
+
 function adjustScore(input, delta) {
-  if (Math.abs(delta) >= 20) {
+  totalDelta += delta;
+
+  const threshold = 40; // less sensitive
+
+  if (Math.abs(totalDelta) >= threshold) {
     let current = parseInt(input.value) || 0;
-    current += delta > 0 ? 1 : -1;
+    current += totalDelta > 0 ? 1 : -1;
     input.value = current;
-    // reset base point so it increments smoothly
-    if (delta > 0) startY -= 20;
-    else startY += 20;
+
+    // Reduce the accumulated delta by threshold amount
+    totalDelta += totalDelta > 0 ? -threshold : threshold;
   }
 }
+
 
 // Setup drag events on page load
 setupDragEvents();
