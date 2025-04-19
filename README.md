@@ -3,6 +3,8 @@
 <h2> Instructions </h2>
 Add players and track their scores. 
 
+<h2> Versions </h2>
+
 <h3> Initial Build </h3>
 01/2025
 
