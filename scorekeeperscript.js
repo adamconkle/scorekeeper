@@ -127,3 +127,41 @@ document.querySelectorAll('.resetScore').forEach(button => {
     resetScore(this);
   });
 });
+
+// select custom background color
+const bgColorBtn = document.getElementById("bgColorBtn");
+const bgColorPicker = document.getElementById("bgColorPicker");
+
+// Load saved background colors on page load
+function applySavedBackground() {
+  const mode = document.body.classList.contains("light-mode") ? "light" : "dark";
+  const savedColor = localStorage.getItem(`bgColor-${mode}`);
+  if (savedColor) {
+    document.body.style.backgroundColor = savedColor;
+  } else {
+    document.body.style.backgroundColor = mode === "light" ? "white" : "#121212"; // default fallback
+  }
+}
+
+// Event to open color picker
+bgColorBtn.addEventListener("click", () => {
+  bgColorPicker.click();
+});
+
+// On color change
+bgColorPicker.addEventListener("input", (e) => {
+  const color = e.target.value;
+  const mode = document.body.classList.contains("light-mode") ? "light" : "dark";
+  localStorage.setItem(`bgColor-${mode}`, color);
+  document.body.style.backgroundColor = color;
+});
+
+// When light/dark mode is toggled, apply the correct background
+document.getElementById("lightDark").addEventListener("click", () => {
+  const newMode = document.body.classList.contains("light-mode") ? "light" : "dark";
+  const savedColor = localStorage.getItem(`bgColor-${newMode}`);
+  document.body.style.backgroundColor = savedColor || (newMode === "light" ? "white" : "#121212");
+});
+
+// Apply saved background on page load
+applySavedBackground();
