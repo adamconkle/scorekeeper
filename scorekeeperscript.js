@@ -1,20 +1,18 @@
-// Reset all scores for a given player
 function resetScore(buttonElement) {
   const playerForm = buttonElement.closest('.player-form');
   const scores = playerForm.querySelectorAll('input[type="number"]');
   scores.forEach(input => input.value = 0);
 }
 
-// Add a new player form dynamically
 function addPlayer() {
-  const playerIndex = document.querySelectorAll('.player-form').length;
+  const playerIndex = document.querySelectorAll('.player-form').length + 1;
 
   const playerForm = document.createElement('div');
   playerForm.classList.add('player-form');
 
   playerForm.innerHTML = `
-    <input type="text" id="name${playerIndex + 1}" placeholder="Player ${playerIndex + 1} Name">
-    <input type="number" inputmode="numeric" class="score" id="score${playerIndex + 1}_1" placeholder="0">
+    <input type="text" id="name${playerIndex}" placeholder="Player ${playerIndex} Name">
+    <input type="number" inputmode="numeric" class="score" id="score${playerIndex}_1" placeholder="0">
     <button class="resetScore" data-tooltip="Reset all scores to 0">&#8634;</button>
   `;
 
@@ -27,7 +25,6 @@ function addPlayer() {
   setupDragEvents();
 }
 
-// Add another score column for each player
 function addScoreColumn() {
   const allPlayers = document.querySelectorAll(".player-form");
 
@@ -50,90 +47,20 @@ function addScoreColumn() {
   setupDragEvents();
 }
 
-// Light/Dark mode toggle
+// Light/Dark toggle
 document.getElementById("lightDark").addEventListener("click", function () {
   document.body.classList.toggle("light-mode");
   this.textContent = document.body.classList.contains("light-mode") ? "☽" : "☀︎";
   applySavedBackground();
 });
 
-// Drag-to-adjust functionality
-function setupDragEvents() {
-  const scores = document.querySelectorAll(".score");
-  scores.forEach(scoreInput => {
-    let startY = null;
-    let dragging = false;
-
-    // Touch
-    scoreInput.addEventListener("touchstart", e => {
-      startY = e.touches[0].clientY;
-    });
-
-    scoreInput.addEventListener("touchmove", e => {
-      if (startY === null) return;
-      const currentY = e.touches[0].clientY;
-      const delta = startY - currentY;
-      adjustScore(scoreInput, delta);
-      e.preventDefault();
-    });
-
-    scoreInput.addEventListener("touchend", () => {
-      startY = null;
-    });
-
-    // Mouse
-    scoreInput.addEventListener("mousedown", e => {
-      dragging = true;
-      startY = e.clientY;
-    });
-
-    document.addEventListener("mousemove", e => {
-      if (!dragging || startY === null) return;
-      const delta = startY - e.clientY;
-      adjustScore(scoreInput, delta);
-    });
-
-    document.addEventListener("mouseup", () => {
-      dragging = false;
-      startY = null;
-    });
-  });
-}
-
-let totalDelta = 0;
-function adjustScore(input, delta) {
-  totalDelta += delta;
-  const threshold = 1000;
-
-  if (Math.abs(totalDelta) >= threshold) {
-    let current = parseInt(input.value) || 0;
-    current += totalDelta > 0 ? 1 : -1;
-    input.value = current;
-    totalDelta += totalDelta > 0 ? -threshold : threshold;
-  }
-}
-
-setupDragEvents();
-
-document.querySelectorAll('.resetScore').forEach(button => {
-  button.addEventListener('click', function () {
-    resetScore(this);
-  });
-});
-
-// ========== CUSTOM BACKGROUND COLOR PICKER ==========
-
+// Background color picker
+const colorWheelTrigger = document.getElementById("colorWheelTrigger");
 const bgColorPicker = document.getElementById("bgColorPicker");
 
-function applySavedBackground() {
-  const mode = document.body.classList.contains("light-mode") ? "light" : "dark";
-  const savedColor = localStorage.getItem(`bgColor-${mode}`);
-  if (savedColor) {
-    document.body.style.backgroundColor = savedColor;
-  } else {
-    document.body.style.backgroundColor = mode === "light" ? "white" : "#121212";
-  }
-}
+colorWheelTrigger.addEventListener("click", () => {
+  bgColorPicker.click();
+});
 
 bgColorPicker.addEventListener("input", (e) => {
   const color = e.target.value;
@@ -142,4 +69,83 @@ bgColorPicker.addEventListener("input", (e) => {
   document.body.style.backgroundColor = color;
 });
 
+function applySavedBackground() {
+  const mode = document.body.classList.contains("light-mode") ? "light" : "dark";
+  const savedColor = localStorage.getItem(`bgColor-${mode}`);
+  document.body.style.backgroundColor = savedColor || (mode === "light" ? "white" : "#121212");
+}
 applySavedBackground();
+
+// Score drag logic
+function setupDragEvents() {
+  const scores = document.querySelectorAll(".score");
+
+  scores.forEach(scoreInput => {
+    let dragging = false;
+    let startY = 0;
+    let localDelta = 0;
+
+    // TOUCH
+    scoreInput.addEventListener("touchstart", e => {
+      startY = e.touches[0].clientY;
+      dragging = true;
+    });
+
+    scoreInput.addEventListener("touchmove", e => {
+      if (!dragging) return;
+      e.preventDefault();
+      const deltaY = startY - e.touches[0].clientY;
+      localDelta += deltaY;
+      startY = e.touches[0].clientY;
+
+      if (Math.abs(localDelta) >= 30) {
+        let val = parseInt(scoreInput.value) || 0;
+        val += localDelta > 0 ? 1 : -1;
+        scoreInput.value = val;
+        localDelta = 0;
+      }
+    }, { passive: false });
+
+    scoreInput.addEventListener("touchend", () => {
+      dragging = false;
+      localDelta = 0;
+    });
+
+    // MOUSE
+    scoreInput.addEventListener("mousedown", e => {
+      startY = e.clientY;
+      dragging = true;
+    });
+
+    document.addEventListener("mousemove", e => {
+      if (!dragging) return;
+      const deltaY = startY - e.clientY;
+      localDelta += deltaY;
+      startY = e.clientY;
+
+      if (Math.abs(localDelta) >= 30) {
+        let val = parseInt(scoreInput.value) || 0;
+        val += localDelta > 0 ? 1 : -1;
+        scoreInput.value = val;
+        localDelta = 0;
+      }
+    });
+
+    document.addEventListener("mouseup", () => {
+      dragging = false;
+      localDelta = 0;
+    });
+  });
+}
+
+setupDragEvents();
+
+// Init reset buttons
+document.querySelectorAll('.resetScore').forEach(button => {
+  button.addEventListener('click', function () {
+    resetScore(this);
+  });
+});
+
+document.querySelector(".addPlayer").addEventListener("click", addPlayer);
+document.querySelector(".addColumn").addEventListener("click", addScoreColumn);
