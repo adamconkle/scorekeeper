@@ -15,7 +15,7 @@ function addPlayer() {
   playerForm.innerHTML = `
     <input type="text" id="name${playerIndex + 1}" placeholder="Player ${playerIndex + 1} Name">
     <input type="number" inputmode="numeric" class="score" id="score${playerIndex + 1}_1" placeholder="0">
-    <button class="resetScore" data-tooltip="Reset all scores to 0">🔄</button>
+    <button class="resetScore" data-tooltip="Reset all scores to 0">&#8634;</button>
   `;
 
   // Attach reset button event here
