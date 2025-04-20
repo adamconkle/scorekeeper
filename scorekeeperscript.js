@@ -18,14 +18,13 @@ function addPlayer() {
     <button class="resetScore" data-tooltip="Reset all scores to 0">&#8634;</button>
   `;
 
-  // Attach reset button event here
   const resetButton = playerForm.querySelector('.resetScore');
   resetButton.addEventListener('click', function () {
     resetScore(this);
   });
 
   document.getElementById("scores").appendChild(playerForm);
-  setupDragEvents(); // Apply drag listeners to new inputs
+  setupDragEvents();
 }
 
 // Add another score column for each player
@@ -55,7 +54,7 @@ function addScoreColumn() {
 document.getElementById("lightDark").addEventListener("click", function () {
   document.body.classList.toggle("light-mode");
   this.textContent = document.body.classList.contains("light-mode") ? "☽" : "☀︎";
-  applySavedBackground(); // Apply appropriate background color for new mode
+  applySavedBackground();
 });
 
 // Drag-to-adjust functionality
@@ -101,12 +100,10 @@ function setupDragEvents() {
   });
 }
 
-// Score adjustment via drag
 let totalDelta = 0;
-
 function adjustScore(input, delta) {
   totalDelta += delta;
-  const threshold = 1000; // Adjust this to make it more/less sensitive
+  const threshold = 1000;
 
   if (Math.abs(totalDelta) >= threshold) {
     let current = parseInt(input.value) || 0;
@@ -116,39 +113,28 @@ function adjustScore(input, delta) {
   }
 }
 
-// Initialize drag events on load
 setupDragEvents();
 
-// If there's an "Add Player" button at load, attach this so the first reset works
 document.querySelectorAll('.resetScore').forEach(button => {
   button.addEventListener('click', function () {
     resetScore(this);
   });
 });
 
-
 // ========== CUSTOM BACKGROUND COLOR PICKER ==========
 
-const colorWheelTrigger = document.getElementById("colorWheelTrigger");
 const bgColorPicker = document.getElementById("bgColorPicker");
 
-// Load saved background colors on page load
 function applySavedBackground() {
   const mode = document.body.classList.contains("light-mode") ? "light" : "dark";
   const savedColor = localStorage.getItem(`bgColor-${mode}`);
   if (savedColor) {
     document.body.style.backgroundColor = savedColor;
   } else {
-    document.body.style.backgroundColor = mode === "light" ? "white" : "#121212"; // default fallback
+    document.body.style.backgroundColor = mode === "light" ? "white" : "#121212";
   }
 }
 
-// Event to open hidden color picker
-colorWheelTrigger.addEventListener("click", () => {
-  bgColorPicker.click();
-});
-
-// On color change
 bgColorPicker.addEventListener("input", (e) => {
   const color = e.target.value;
   const mode = document.body.classList.contains("light-mode") ? "light" : "dark";
@@ -156,5 +142,4 @@ bgColorPicker.addEventListener("input", (e) => {
   document.body.style.backgroundColor = color;
 });
 
-// Apply saved background on load
 applySavedBackground();
