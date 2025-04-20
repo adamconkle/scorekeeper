@@ -103,7 +103,7 @@ function setupDragEvents() {
 let totalDelta = 0;
 function adjustScore(input, delta) {
   totalDelta += delta;
-  const threshold = 1000;
+  const threshold = 500;
 
   if (Math.abs(totalDelta) >= threshold) {
     let current = parseInt(input.value) || 0;
