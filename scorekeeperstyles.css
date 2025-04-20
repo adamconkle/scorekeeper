@@ -80,7 +80,7 @@ header {
 
 /* Buttons */
 button {
-  background-color: dodgerblue;
+  background-color: transparent;
   border: none;
   color: white;
   padding: 10px 15px;
@@ -111,12 +111,12 @@ body.light-mode .player-form > input[type="text"] {
 }
 
 body.light-mode button {
-  background-color: #333;
+  background-color: transparent;
   color: white;
 }
 
 body.light-mode #lightDark {
-  background-color: white;
+  background-color: transparent;
   color: black;
 }
 
