@@ -55,6 +55,7 @@ function addScoreColumn() {
 document.getElementById("lightDark").addEventListener("click", function () {
   document.body.classList.toggle("light-mode");
   this.textContent = document.body.classList.contains("light-mode") ? "☽" : "☀︎";
+  applySavedBackground(); // Apply appropriate background color for new mode
 });
 
 // Drag-to-adjust functionality
@@ -105,15 +106,12 @@ let totalDelta = 0;
 
 function adjustScore(input, delta) {
   totalDelta += delta;
-
   const threshold = 1000; // Adjust this to make it more/less sensitive
 
   if (Math.abs(totalDelta) >= threshold) {
     let current = parseInt(input.value) || 0;
     current += totalDelta > 0 ? 1 : -1;
     input.value = current;
-
-    // Reduce accumulated delta
     totalDelta += totalDelta > 0 ? -threshold : threshold;
   }
 }
@@ -128,8 +126,10 @@ document.querySelectorAll('.resetScore').forEach(button => {
   });
 });
 
-// select custom background color
-const bgColorBtn = document.getElementById("bgColorBtn");
+
+// ========== CUSTOM BACKGROUND COLOR PICKER ==========
+
+const colorWheelTrigger = document.getElementById("colorWheelTrigger");
 const bgColorPicker = document.getElementById("bgColorPicker");
 
 // Load saved background colors on page load
@@ -143,8 +143,8 @@ function applySavedBackground() {
   }
 }
 
-// Event to open color picker
-bgColorBtn.addEventListener("click", () => {
+// Event to open hidden color picker
+colorWheelTrigger.addEventListener("click", () => {
   bgColorPicker.click();
 });
 
@@ -156,12 +156,5 @@ bgColorPicker.addEventListener("input", (e) => {
   document.body.style.backgroundColor = color;
 });
 
-// When light/dark mode is toggled, apply the correct background
-document.getElementById("lightDark").addEventListener("click", () => {
-  const newMode = document.body.classList.contains("light-mode") ? "light" : "dark";
-  const savedColor = localStorage.getItem(`bgColor-${newMode}`);
-  document.body.style.backgroundColor = savedColor || (newMode === "light" ? "white" : "#121212");
-});
-
-// Apply saved background on page load
+// Apply saved background on load
 applySavedBackground();
