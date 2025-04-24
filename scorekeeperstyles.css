@@ -106,9 +106,11 @@ body.light-mode {
   color: black;
 }
 
+/*
 .player-form > .resetScore,  .light-mode {
   color: black;
 }
+*/
 
 body.light-mode .player-form > input[type="text"] {
   background-color: #ddd;
