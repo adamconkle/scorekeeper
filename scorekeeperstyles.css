@@ -53,7 +53,8 @@ header {
 }
 
 .player-form > input[type="number"] {
-  width: 4ch;
+  min-width: 3ch;
+  max-width: 6ch;
   text-align: center;
   -moz-appearance: textfield;
   height: 60px;
