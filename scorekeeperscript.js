@@ -149,5 +149,10 @@ document.querySelector('label[for="bgColorPicker"]').addEventListener('click', (
   bgColorPicker.click();
 });
 
+document.getElementById('bgColorPicker').addEventListener('input', function () {
+  document.body.style.backgroundColor = this.value;
+});
+
+
 
 applySavedBackground();
