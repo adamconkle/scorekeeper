@@ -95,7 +95,7 @@ button:hover,
 
 /* Footer */
 footer > button {
-  background-color: #121212;
+  background-color: transparent;
   border: 2px solid white;
   margin-top: 20px;
 }
