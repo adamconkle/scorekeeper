@@ -106,8 +106,12 @@ body.light-mode {
   color: black;
 }
 
+.player-form > .resetScore,  .light-mode {
+  color: black;
+}
+
 body.light-mode .player-form > input[type="text"] {
-  background-color: #eee;
+  background-color: #ddd;
 }
 
 body.light-mode button {
@@ -121,7 +125,7 @@ body.light-mode #lightDark {
 }
 
 body.light-mode footer > button {
-  background-color: white;
+  background-color: transparent;
   color: #777;
   border: 2px solid black;
 }
@@ -161,5 +165,3 @@ body.light-mode footer > button {
     font-size: 1.2rem;
   }
 }
-
-
