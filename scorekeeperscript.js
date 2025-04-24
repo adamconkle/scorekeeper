@@ -153,6 +153,19 @@ document.getElementById('bgColorPicker').addEventListener('input', function () {
   document.body.style.backgroundColor = this.value;
 });
 
+// COLOR PICKER FOR MOBILE NEW METHOD
+const colorInput = document.getElementById('bgColorPicker');
+const icon = document.getElementById('colorIcon');
+
+icon.addEventListener('click', () => {
+  colorInput.click(); // manually trigger the color picker
+});
+
+colorInput.addEventListener('input', () => {
+  document.body.style.backgroundColor = colorInput.value;
+});
+
+
 
 
 applySavedBackground();
