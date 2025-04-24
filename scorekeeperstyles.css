@@ -96,7 +96,7 @@ button:hover,
 /* Footer */
 footer > button {
   background-color: #121212;
-  border: 2px solid dodgerblue;
+  border: 2px solid white;
   margin-top: 20px;
 }
 
@@ -122,8 +122,8 @@ body.light-mode #lightDark {
 
 body.light-mode footer > button {
   background-color: white;
-  color: dodgerblue;
-  border: 2px solid dodgerblue;
+  color: #777;
+  border: 2px solid black;
 }
 
 /* Tooltip styles */
