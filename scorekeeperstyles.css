@@ -54,7 +54,7 @@ header {
 
 .player-form > input[type="number"] {
   min-width: 3ch; /* Smallest size for a few digits */
-  max-width: 6ch;
+  max-width: 5ch;
   text-align: center;
   -moz-appearance: textfield;
   height: 60px;
