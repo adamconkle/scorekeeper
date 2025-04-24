@@ -61,7 +61,7 @@ header {
   background-color: #ccc;
   border: none;
   cursor: row-resize;
-  font-size: 24px;
+  font-size: 22px;
 }
 
 .player-form > input[type="number"]::-webkit-outer-spin-button,
