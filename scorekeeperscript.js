@@ -142,4 +142,12 @@ bgColorPicker.addEventListener("input", (e) => {
   document.body.style.backgroundColor = color;
 });
 
+// BACKGROUND PICKER FOR MOBILE //
+// Manually trigger the hidden color picker on label click for mobile compatibility
+document.querySelector('label[for="bgColorPicker"]').addEventListener('click', (e) => {
+  e.preventDefault();
+  bgColorPicker.click();
+});
+
+
 applySavedBackground();
