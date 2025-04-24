@@ -1,11 +1,11 @@
-// Reset all scores for a given player
+// ========== RESET SCORE FUNCTION ==========
 function resetScore(buttonElement) {
   const playerForm = buttonElement.closest('.player-form');
   const scores = playerForm.querySelectorAll('input[type="number"]');
   scores.forEach(input => input.value = 0);
 }
 
-// Add a new player form dynamically
+// ========== ADD PLAYER ==========
 function addPlayer() {
   const playerIndex = document.querySelectorAll('.player-form').length;
 
@@ -27,7 +27,7 @@ function addPlayer() {
   setupDragEvents();
 }
 
-// Add another score column for each player
+// ========== ADD SCORE COLUMN ==========
 function addScoreColumn() {
   const allPlayers = document.querySelectorAll(".player-form");
 
@@ -50,14 +50,14 @@ function addScoreColumn() {
   setupDragEvents();
 }
 
-// Light/Dark mode toggle
+// ========== LIGHT/DARK MODE ==========
 document.getElementById("lightDark").addEventListener("click", function () {
   document.body.classList.toggle("light-mode");
   this.textContent = document.body.classList.contains("light-mode") ? "☽" : "☀︎";
   applySavedBackground();
 });
 
-// Drag-to-adjust functionality
+// ========== DRAG TO ADJUST SCORE ==========
 function setupDragEvents() {
   const scores = document.querySelectorAll(".score");
   scores.forEach(scoreInput => {
@@ -113,8 +113,7 @@ function adjustScore(input, delta) {
   }
 }
 
-setupDragEvents();
-
+// ========== RESET BUTTON INITIALIZER ==========
 document.querySelectorAll('.resetScore').forEach(button => {
   button.addEventListener('click', function () {
     resetScore(this);
@@ -122,8 +121,8 @@ document.querySelectorAll('.resetScore').forEach(button => {
 });
 
 // ========== CUSTOM BACKGROUND COLOR PICKER ==========
-
 const bgColorPicker = document.getElementById("bgColorPicker");
+const colorIcon = document.getElementById("colorIcon");
 
 function applySavedBackground() {
   const mode = document.body.classList.contains("light-mode") ? "light" : "dark";
@@ -135,37 +134,17 @@ function applySavedBackground() {
   }
 }
 
-bgColorPicker.addEventListener("input", (e) => {
-  const color = e.target.value;
+colorIcon.addEventListener("click", () => {
+  bgColorPicker.click();
+});
+
+bgColorPicker.addEventListener("input", () => {
+  const color = bgColorPicker.value;
   const mode = document.body.classList.contains("light-mode") ? "light" : "dark";
   localStorage.setItem(`bgColor-${mode}`, color);
   document.body.style.backgroundColor = color;
 });
 
-// BACKGROUND PICKER FOR MOBILE //
-// Manually trigger the hidden color picker on label click for mobile compatibility
-document.querySelector('label[for="bgColorPicker"]').addEventListener('click', (e) => {
-  e.preventDefault();
-  bgColorPicker.click();
-});
-
-document.getElementById('bgColorPicker').addEventListener('input', function () {
-  document.body.style.backgroundColor = this.value;
-});
-
-// COLOR PICKER FOR MOBILE NEW METHOD
-const colorInput = document.getElementById('bgColorPicker');
-const icon = document.getElementById('colorIcon');
-
-icon.addEventListener('click', () => {
-  colorInput.click(); // manually trigger the color picker
-});
-
-colorInput.addEventListener('input', () => {
-  document.body.style.backgroundColor = colorInput.value;
-});
-
-
-
-
+// ========== INITIAL SETUP ==========
 applySavedBackground();
+setupDragEvents();
